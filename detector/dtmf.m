@@ -14,14 +14,14 @@ dev=[delta2 delta1 delta2];
 fs=8000; 
 A=[0 1 0]; 
 [n,Fo,Ao,w]=remezord(F1,A,dev,fs); 
-h1=remez(n,Fo,Ao,w); 
+h1=remez(n,F1,A,w); 
 F2=[1099 1199 1487 1587]; 
 delta1=0.000576; % rizado 0.01 db en banda de paso; 
 delta2=0.00001; %atenuacion de 100db 
 dev=[delta2 delta1 delta2]; 
 fs=8000; 
 A=[0 1 0]; 
-[n,Fo,Ao,w]=remezord(F2,A,dev,fs); 
+[n,Fo,Ao,w]=(F2,A,dev,fs); 
 h2=remez(n,Fo,Ao,w); 
 h=h1+h2; 
 yf=filter(h,1,y); 
@@ -54,7 +54,7 @@ for i=1:80 ; % Fijo
 prue(i)=Y(i+k); 
 i=i+1; 
 end 
-E=Goer(prue) ; 
+E=Goer(prue); 
 % banco de filtros 
 k=k+80 ; 
 for l=1:7; 
@@ -148,5 +148,6 @@ end
 end % Fin de while _espera 
 pause 
 m=mm; 
-mm=0; % Fin de primer tono ,empieza busqueda de siguiente tono end % Fin General
-end
+mm=0; % Fin de primer tono ,empieza busqueda de siguiente tono 
+end % Fin General
+endfunction
